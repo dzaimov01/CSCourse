@@ -21,30 +21,28 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BlogPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", insertable = false, updatable = false, nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="id", insertable=false, updatable=false, nullable=false)
     private UUID id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name="title", nullable=false)
     private String title;
-    @Column(name = "body", columnDefinition = "TEXT")
+    @Column(name="body", columnDefinition="TEXT")
     private String body;
     @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
     @NonNull
     private User user;
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    @JoinColumn(name="comments")
+    @OneToMany(mappedBy="post", cascade=CascadeType.REMOVE)
     private Set<Comment> comments;
-    @Column(name = "created_by", length = 50, updatable = false)
+    @Column(name="created_by", length=50, updatable=false)
     private String createdBy;
     @CreatedDate
-    @Column(name = "created_date")
+    @Column(name="created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
     @LastModifiedBy
-    @Column(name = "last_modified_by", length = 50)
+    @Column(name="last_modified_by", length=50)
     private String lastModifiedBy;
     @LastModifiedDate
-    @Column(name = "last_modified_date")
+    @Column(name="last_modified_date")
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 }

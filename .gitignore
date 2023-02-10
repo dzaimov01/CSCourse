@@ -4,6 +4,9 @@
 # Log file
 *.log
 
+#IDEA Folder
+cscoursesdz/.idea/
+
 # BlueJ files
 *.ctxt
 

@@ -18,12 +18,12 @@ management:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5332/cscourses
-    username: dzaimov
-    password: password
+    url: jdbc:postgresql://localhost:5432/cscourses
+    username: postgres
+    password: denislaw1
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop #validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect

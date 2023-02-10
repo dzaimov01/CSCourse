@@ -23,20 +23,21 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", insertable=false, updatable=false, nullable=false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(insertable=false, updatable=false, nullable=false)
     private UUID id;
 
-    @Column(length = 30, unique = true, nullable = false)
+    @Column(length=30, unique=true, nullable=false)
     private String email;
 
-    @Column(name = "user_name", length = 30, nullable = false)
+    @Column(length=30, unique=true, nullable=false)
     private String userName;
 
     @JsonIgnore
-    @Column(name = "password_hash", length = 60, nullable = true)
+    @Column(length=60, nullable=true)
     private String password;
 
     private String imageUrl;
@@ -49,35 +50,28 @@ public class User {
 
     @JsonIgnore
     @ManyToMany
-    @JoinTable(
-            name = "user_authority",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
-
-    @BatchSize(size = 20)
+    @BatchSize(size=20)
     private Set<Role> authorities = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy="user")
     @JsonBackReference
     private Set<BlogPost> posts;
 
     @CreatedBy
-    @Column(name = "created_by", length = 50, updatable = false)
+    @Column(length=50, updatable=false)
     @JsonIgnore
     private String createdBy;
 
     @CreatedDate
-    @Column(name = "created_date")
     @JsonIgnore
     private LocalDateTime createdDate = LocalDateTime.now();
 
     @LastModifiedBy
-    @Column(name = "last_modified_by", length = 50)
+    @Column(length=50)
     @JsonIgnore
     private String lastModifiedBy;
 
     @LastModifiedDate
-    @Column(name = "last_modified_date")
     @JsonIgnore
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 

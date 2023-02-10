@@ -17,9 +17,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name="comment")
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id", insertable=false, updatable=false, nullable=false)
     private UUID id;
 
@@ -36,12 +37,10 @@ public class Comment {
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name="post_id", referencedColumnName="post_id", nullable=false)
     @NonNull
     private BlogPost post;
 
     @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
     @NonNull
     private User user;
 }

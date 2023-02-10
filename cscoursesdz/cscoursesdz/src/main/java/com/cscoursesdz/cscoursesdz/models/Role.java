@@ -12,14 +12,15 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="role")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id", insertable=false, updatable=false, nullable=false)
     private UUID id;
 
     @NonNull
-    @Column(length = 20)
+    @Column(length=20)
     private String name;
 
     @Override

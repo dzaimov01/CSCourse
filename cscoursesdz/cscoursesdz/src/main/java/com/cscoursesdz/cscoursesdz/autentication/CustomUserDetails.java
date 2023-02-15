@@ -1,18 +1,16 @@
-package com.cscoursesdz.cscoursesdz.services;
+package com.cscoursesdz.cscoursesdz.autentication;
 
 import com.cscoursesdz.cscoursesdz.common.AuthoritiesConstants;
 import com.cscoursesdz.cscoursesdz.models.User;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Component
-@Builder
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomUserDetails {
@@ -26,13 +24,13 @@ public class CustomUserDetails {
     public static CustomUserDetails create(User user) {
         List<GrantedAuthority> authorities = Collections.
                 singletonList(new SimpleGrantedAuthority(AuthoritiesConstants.USER));
-
         return CustomUserDetails.builder()
                 .id(user.getId())
                 .name(user.getUserName())
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .authorities(authorities).build();
+                .authorities(authorities)
+                .build();
     }
 
     public static CustomUserDetails create(User user, Map<String, Object> attributes) {

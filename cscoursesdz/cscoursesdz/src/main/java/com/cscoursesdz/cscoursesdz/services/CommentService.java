@@ -1,6 +1,8 @@
 package com.cscoursesdz.cscoursesdz.services;
 
+import com.cscoursesdz.cscoursesdz.autentication.CustomUserDetails;
 import com.cscoursesdz.cscoursesdz.dto.CommentDTO;
+import com.cscoursesdz.cscoursesdz.exceptions.BadRequestException;
 import com.cscoursesdz.cscoursesdz.models.BlogPost;
 import com.cscoursesdz.cscoursesdz.models.Comment;
 import com.cscoursesdz.cscoursesdz.models.User;
@@ -33,10 +35,10 @@ public class CommentService {
         return commentRepository.findByPostId(id);
     }
 
-    public CommentDTO registerComment(CommentDTO commentDto, CustomUserDetails customUserDetails) throws Exception {
+    public CommentDTO registerComment(CommentDTO commentDto, CustomUserDetails customUserDetails) {
         Optional<BlogPost> postForId = this.findPostForId(commentDto.getPostId());
         if (!postForId.isPresent()) {
-            throw new Exception("Not exist post.");
+            throw new BadRequestException("Post does not exist.");
         }
 
         Comment newComment = new Comment();
@@ -58,14 +60,14 @@ public class CommentService {
                 .lastModifiedDate(newComment.getLastModifiedDate()).build();
     }
 
-    public CommentDTO editPost(CommentDTO editCommentDto) throws Exception {
+    public CommentDTO editPost(CommentDTO editCommentDto) {
         Optional<Comment> comment = this.findForId(editCommentDto.getId())
                 .map(commentInfo -> {
                     commentInfo.setBody(editCommentDto.getBody());
                     return commentInfo;
                 });
         if(comment.isPresent()) {
-            throw new Exception("Not exist post.");
+            throw new BadRequestException("Not exist post.");
         }
         Comment commentData = comment.get();
         return CommentDTO.builder()

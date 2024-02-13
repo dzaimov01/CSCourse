@@ -1,11 +1,11 @@
 package com.distributedappspu.cscources.models.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,11 +13,26 @@ import java.util.Date;
 @AllArgsConstructor
 public class CourseDTO {
 
-    private Long id;
+    private UUID id;
+
+    @NotNull
+    @NotBlank
     private String name;
+
+    @NotNull
+    @NotBlank
     private String description;
+
+    @NotNull
+    @NotBlank
     private Date startDate;
+
+    @NotNull
+    @NotBlank
     private Date endDate;
-    private Long instructorId;
+
+    @NotNull
+    @NotBlank
+    private UUID instructorId;
 }
 

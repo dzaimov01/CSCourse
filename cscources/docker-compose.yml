@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgresql
+    image: postgres
+    ports:
+      - "4321:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: denislaw1
+      POSTGRES_DB: cscourcesdb
+    networks:
+      - internal-network
+
+  spring-app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - internal-network
+
+networks:
+  internal-network:
+    driver: bridge

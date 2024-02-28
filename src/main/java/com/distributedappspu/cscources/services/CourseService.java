@@ -17,11 +17,11 @@ import java.util.UUID;
 @Service
 public class CourseService {
 
-    private CourseRepository courseRepository;
+    private final CourseRepository courseRepository;
 
-    private InstructorRepository instructorRepository;
+    private final InstructorRepository instructorRepository;
 
-    private CourseMapper courseMapper;
+    private final CourseMapper courseMapper;
 
     public CourseService(CourseRepository courseRepository, CourseMapper courseMapper, InstructorRepository instructorRepository) {
         this.courseRepository = courseRepository;

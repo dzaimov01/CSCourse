@@ -3,11 +3,13 @@ package com.distributedappspu.cscources.controllers;
 import com.distributedappspu.cscources.models.dto.InstructorDTO;
 import com.distributedappspu.cscources.services.InstructorService;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +40,28 @@ public class InstructorController {
     public ResponseEntity<List<InstructorDTO>> getAllInstructors() {
         List<InstructorDTO> instructorDTOs = instructorService.getAllInstructors();
         return new ResponseEntity<>(instructorDTOs, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/byFirstName")
+    public List<InstructorDTO> findByFirstName(@RequestParam String firstName) {
+        return instructorService.getInstructorsByFirstName(firstName);
+    }
+
+    @GetMapping("/search/byLastName")
+    public List<InstructorDTO> findByLastName(@RequestParam String lastName) {
+        return instructorService.getInstructorsByLastName(lastName);
+    }
+
+    @GetMapping("/search/byDateOfBirth")
+    public List<InstructorDTO> findByDateOfBirth(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateOfBirth) {
+        return instructorService.getInstructorsByDateOfBirth(dateOfBirth);
+    }
+
+    @GetMapping("/search/byHireDate")
+    public List<InstructorDTO> findByHireDate(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate) {
+        return instructorService.getInstructorsByHireDate(hireDate);
     }
 
     @PutMapping("/{id}")

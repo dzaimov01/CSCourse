@@ -7,15 +7,16 @@ import com.distributedappspu.cscources.repositories.InstructorRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class InstructorService {
 
-    private InstructorRepository instructorRepository;
+    private final InstructorRepository instructorRepository;
 
-    private InstructorMapper instructorMapper;
+    private final InstructorMapper instructorMapper;
 
     public InstructorService(InstructorRepository instructorRepository, InstructorMapper instructorMapper) {
         this.instructorRepository = instructorRepository;
@@ -30,8 +31,23 @@ public class InstructorService {
         return instructorMapper.mapInstructor(instructorRepository.findById(id).orElseThrow());
     }
 
+    public List<InstructorDTO> getInstructorsByFirstName(String firstName) {
+        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByFirstName(firstName));
+    }
+
+    public List<InstructorDTO> getInstructorsByLastName(String lastName) {
+        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByLastName(lastName));
+    }
+
+    public List<InstructorDTO> getInstructorsByDateOfBirth(Date dateOfBirth) {
+        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByDateOfBirth(dateOfBirth));
+    }
+
+    public List<InstructorDTO> getInstructorsByHireDate(Date hireDate) {
+        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByHireDate(hireDate));
+    }
+
     public InstructorDTO createInstructor(@Valid InstructorDTO instructorDTO){
-        //TODO validate input
         InstructorEntity instructorEntity = instructorMapper.mapInstructor(instructorDTO);
         return instructorMapper.mapInstructor(instructorRepository.save(instructorEntity));
     }
@@ -39,12 +55,8 @@ public class InstructorService {
     public InstructorDTO updateInstructor(UUID id, @Valid InstructorDTO instructorDTO){
         InstructorEntity existingInstructor = instructorRepository.findById(id).orElse(null);
         if (existingInstructor == null) {
-            return null;
-            //TODO throw exception
+            throw new IllegalArgumentException("Instructor does not exist!");
         }
-
-        //TODO validate input
-
         InstructorEntity updatedInstructorEntity = instructorMapper.mapInstructor(instructorDTO);
         return instructorMapper.mapInstructor(instructorRepository.save(updatedInstructorEntity));
     }
@@ -53,7 +65,6 @@ public class InstructorService {
         if(!instructorRepository.existsById(id)){
             return;
         }
-
         instructorRepository.deleteById(id);
     }
 }

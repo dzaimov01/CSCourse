@@ -7,6 +7,8 @@ import com.distributedappspu.cscources.models.entities.InstructorEntity;
 import com.distributedappspu.cscources.repositories.CourseRepository;
 import com.distributedappspu.cscources.repositories.InstructorRepository;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -37,24 +39,28 @@ public class CourseService {
         return courseMapper.mapCourse(courseRepository.findById(id).orElseThrow());
     }
 
-    public List<CourseDTO> getCoursesByName(String name) {
-        return courseMapper.mapCourses(courseRepository.findCourseEntitiesByName(name));
+    public Page<CourseDTO> getCoursesByName(String name, Pageable pageable) {
+        Page<CourseEntity> courseEntityPage = courseRepository.findCourseEntitiesByName(name, pageable);
+        return courseEntityPage.map(courseMapper::mapCourse);
     }
 
-    public List<CourseDTO> getCoursesByStartDate(Date startDate) {
-        return courseMapper.mapCourses(courseRepository.findCourseEntitiesByStartDate(startDate));
+    public Page<CourseDTO> getCoursesByStartDate(Date startDate, Pageable pageable) {
+        Page<CourseEntity> courseEntityPage = courseRepository.findCourseEntitiesByStartDate(startDate, pageable);
+        return courseEntityPage.map(courseMapper::mapCourse);
     }
 
-    public List<CourseDTO> getCoursesByEndDate(Date endDate) {
-        return courseMapper.mapCourses(courseRepository.findCourseEntitiesByEndDate(endDate));
+    public Page<CourseDTO> getCoursesByEndDate(Date endDate, Pageable pageable) {
+        Page<CourseEntity> courseEntityPage = courseRepository.findCourseEntitiesByEndDate(endDate, pageable);
+        return courseEntityPage.map(courseMapper::mapCourse);
     }
 
-    public List<CourseDTO> getCoursesByInstructorId(UUID instructorId) {
+    public Page<CourseDTO> getCoursesByInstructorId(UUID instructorId, Pageable pageable) {
         Optional<InstructorEntity> instructor = instructorRepository.findById(instructorId);
         if (instructor.isEmpty()) {
             throw new IllegalArgumentException("Instructor with ID " + instructorId + " not found.");
         }
-        return courseMapper.mapCourses(courseRepository.findCourseEntitiesByInstructor(instructor.get()));
+        Page<CourseEntity> courseEntityPage = courseRepository.findCourseEntitiesByInstructor(instructor.get(), pageable);
+        return courseEntityPage.map(courseMapper::mapCourse);
     }
 
     public CourseDTO createCourse(@Valid CourseDTO courseDTO){

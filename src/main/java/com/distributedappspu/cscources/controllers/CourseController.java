@@ -3,6 +3,9 @@ package com.distributedappspu.cscources.controllers;
 import com.distributedappspu.cscources.models.dto.CourseDTO;
 import com.distributedappspu.cscources.services.CourseService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,26 +40,26 @@ public class CourseController {
     }
 
     @GetMapping("/byName")
-    public ResponseEntity<List<CourseDTO>> getCoursesByName(@RequestParam String name) {
-        List<CourseDTO> courses = courseService.getCoursesByName(name);
+    public ResponseEntity<Page<CourseDTO>> getCoursesByName(@RequestParam String name, @PageableDefault(size = 10) Pageable pageable) {
+        Page<CourseDTO> courses = courseService.getCoursesByName(name, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byStartDate")
-    public ResponseEntity<List<CourseDTO>> getCoursesByStartDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate) {
-        List<CourseDTO> courses = courseService.getCoursesByStartDate(startDate);
+    public ResponseEntity<Page<CourseDTO>> getCoursesByStartDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate, @PageableDefault(size = 10) Pageable pageable) {
+        Page<CourseDTO> courses = courseService.getCoursesByStartDate(startDate, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byEndDate")
-    public ResponseEntity<List<CourseDTO>> getCoursesByEndDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
-        List<CourseDTO> courses = courseService.getCoursesByEndDate(endDate);
+    public ResponseEntity<Page<CourseDTO>> getCoursesByEndDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate, @PageableDefault(size = 10) Pageable pageable) {
+        Page<CourseDTO> courses = courseService.getCoursesByEndDate(endDate, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byInstructor/{instructorId}")
-    public ResponseEntity<List<CourseDTO>> getCoursesByInstructorId(@PathVariable UUID instructorId) {
-        List<CourseDTO> courses = courseService.getCoursesByInstructorId(instructorId);
+    public ResponseEntity<Page<CourseDTO>> getCoursesByInstructorId(@PathVariable UUID instructorId, @PageableDefault(size = 10) Pageable pageable) {
+        Page<CourseDTO> courses = courseService.getCoursesByInstructorId(instructorId, pageable);
         return ResponseEntity.ok(courses);
     }
 

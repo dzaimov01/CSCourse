@@ -1,0 +1,10 @@
+
+_
+java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄŞ8ò¡Ô‹ß1
+w
+java:S3305+"ZInject this field value directly into "securityFilterChain", the only method that uses it.(¥œÏâ8ó¡Ô‹ß1
+m
+java:S1128
+"KRemove this unused import 'org.springframework.security.config.Customizer'.(Ïóœ¬ùÿÿÿÿ8úÌÔ‹ß1
+T
+java:S1068"2Remove this unused "WHITE_LIST_URL" private field.(×÷„ùÿÿÿÿ8ø¡Ô‹ß1

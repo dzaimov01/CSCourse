@@ -13,16 +13,21 @@ public class InstructorEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(length = 20, nullable = false)
     private String firstName;
 
+    @Column(length = 20, nullable = false)
     private String lastName;
 
+    @Column(length = 30, nullable = false)
     private String email;
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date dateOfBirth;
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date hireDate;
 
     @OneToMany(mappedBy = "instructor")

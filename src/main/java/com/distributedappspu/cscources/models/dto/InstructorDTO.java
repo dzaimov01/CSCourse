@@ -1,7 +1,6 @@
 package com.distributedappspu.cscources.models.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,24 +18,30 @@ public class InstructorDTO {
 
     private UUID id;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Instructor's first name cannot be empty!")
+    @NotBlank(message = "Instructor's first name cannot be empty!")
+    @Size(max = 20, message = "Instructor's first name cannot be longer than 20 characters!")
     private String firstName;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Instructor's last name cannot be empty!")
+    @NotBlank(message = "Instructor's last name cannot be empty!")
+    @Size(max = 20, message = "Instructor's last name cannot be longer than 20 characters!")
     private String lastName;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Instructor's email cannot be empty!")
+    @NotBlank(message = "Instructor's email cannot be empty!")
+    @Email(message = "Instructor's email is not in a correct format!")
+    @Size(max = 30, message = "Instructor's email cannot be longer than 30 characters!")
     private String email;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Instructor's date of birth cannot be empty!")
+    @NotBlank(message = "Instructor's date of birth cannot be empty!")
+    @Past(message = "Instructor's date of birth cannot be in the present or future!")
     private Date dateOfBirth;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Instructor's hire date cannot be empty!")
+    @NotBlank(message = "Instructor's hire date cannot be empty!")
+    @PastOrPresent(message = "Instructor's hire date cannot be in the future!")
     private Date hireDate;
 
     private List<UUID> courseIds;

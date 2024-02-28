@@ -13,14 +13,18 @@ public class CourseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(length = 20, nullable = false)
     private String name;
 
+    @Column(length = 300, nullable = false)
     private String description;
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date endDate;
 
     @ManyToOne

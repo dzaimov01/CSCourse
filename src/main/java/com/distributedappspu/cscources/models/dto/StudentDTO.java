@@ -1,7 +1,6 @@
 package com.distributedappspu.cscources.models.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,24 +18,30 @@ public class StudentDTO {
 
     private UUID id;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Student's first name cannot be empty!")
+    @NotBlank(message = "Student's first name cannot be empty!")
+    @Size(max = 20, message = "Student's first name cannot be longer than 20 characters!")
     private String firstName;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Student's last name cannot be empty!")
+    @NotBlank(message = "Student's last name cannot be empty!")
+    @Size(max = 20, message = "Student's last name cannot be longer than 20 characters!")
     private String lastName;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Student's email cannot be empty!")
+    @NotBlank(message = "Student's email cannot be empty!")
+    @Email(message = "Student's email is not in a correct format!")
+    @Size(max = 30, message = "Student's email cannot be longer than 20 characters!")
     private String email;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Student's date of birth cannot be empty!")
+    @NotBlank(message = "Student's date of birth cannot be empty!")
+    @Past(message = "Student's date of birth cannot be in the present or future!")
     private Date dateOfBirth;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Student's enrollment date cannot be empty!")
+    @NotBlank(message = "Student's enrollment date cannot be empty!")
+    @FutureOrPresent(message = "Student's enrollment date cannot be in the past!")
     private Date enrollmentDate;
 
     private List<UUID> courseIds;

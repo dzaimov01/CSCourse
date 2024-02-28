@@ -7,15 +7,16 @@ import com.distributedappspu.cscources.repositories.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class StudentService {
 
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
-    private StudentMapper studentMapper;
+    private final StudentMapper studentMapper;
 
     public StudentService(StudentRepository studentRepository, StudentMapper studentMapper){
         this.studentRepository = studentRepository;
@@ -30,8 +31,19 @@ public class StudentService {
         return studentMapper.mapStudent(studentRepository.findById(id).orElseThrow());
     }
 
+    public List<StudentDTO> getStudentsByFirstName(String firstName) {
+        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByFirstName(firstName));
+    }
+
+    public List<StudentDTO> getStudentsByLastName(String lastName) {
+        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByLastName(lastName));
+    }
+
+    public List<StudentDTO> getStudentsByEnrollmentDate(Date enrollmentDate) {
+        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByEnrollmentDate(enrollmentDate));
+    }
+
     public StudentDTO createStudent(@Valid StudentDTO studentDTO) {
-        //TODO validate input
         StudentEntity instructorEntity = studentMapper.mapStudent(studentDTO);
         return studentMapper.mapStudent(studentRepository.save(instructorEntity));
     }
@@ -39,12 +51,8 @@ public class StudentService {
     public StudentDTO updateStudent(UUID id, @Valid StudentDTO studentDTO){
         StudentEntity existingStudent = studentRepository.findById(id).orElse(null);
         if (existingStudent == null) {
-            return null;
-            //TODO throw exception
+            throw new IllegalArgumentException("Student does not exist!");
         }
-
-        //TODO validate input
-
         StudentEntity updatedStudentEntity = studentMapper.mapStudent(studentDTO);
         return studentMapper.mapStudent(studentRepository.save(updatedStudentEntity));
     }
@@ -53,7 +61,6 @@ public class StudentService {
         if(!studentRepository.existsById(id)) {
             return;
         }
-
         studentRepository.deleteById(id);
     }
 }

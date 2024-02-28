@@ -31,3 +31,5 @@ Tsrc/main/java/com/distributedappspu/cscources/repositories/InstructorRepository
 Msrc/main/java/com/distributedappspu/cscources/services/InstructorService.java,1/6/1696c45e46cf0f330c212db0f8cfc90bab88c55e
 z
 Jsrc/main/java/com/distributedappspu/cscources/services/StudentService.java,3/5/35fd4df889cac33edfc98d73f03fb74bfe2218a8
+Å
+Qsrc/main/java/com/distributedappspu/cscources/repositories/StudentRepository.java,5/0/50f37a2e57aba099b408c5bf57f9d6f3836d927f

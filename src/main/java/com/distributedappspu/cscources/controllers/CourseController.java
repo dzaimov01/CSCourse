@@ -40,25 +40,25 @@ public class CourseController {
     }
 
     @GetMapping("/byName")
-    public ResponseEntity<Page<CourseDTO>> getCoursesByName(@RequestParam String name, @PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<Page<CourseDTO>> getCoursesByName(@RequestParam String name, @PageableDefault() Pageable pageable) {
         Page<CourseDTO> courses = courseService.getCoursesByName(name, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byStartDate")
-    public ResponseEntity<Page<CourseDTO>> getCoursesByStartDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate, @PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<Page<CourseDTO>> getCoursesByStartDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate, @PageableDefault() Pageable pageable) {
         Page<CourseDTO> courses = courseService.getCoursesByStartDate(startDate, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byEndDate")
-    public ResponseEntity<Page<CourseDTO>> getCoursesByEndDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate, @PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<Page<CourseDTO>> getCoursesByEndDate(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate, @PageableDefault() Pageable pageable) {
         Page<CourseDTO> courses = courseService.getCoursesByEndDate(endDate, pageable);
         return ResponseEntity.ok(courses);
     }
 
     @GetMapping("/byInstructor/{instructorId}")
-    public ResponseEntity<Page<CourseDTO>> getCoursesByInstructorId(@PathVariable UUID instructorId, @PageableDefault(size = 10) Pageable pageable) {
+    public ResponseEntity<Page<CourseDTO>> getCoursesByInstructorId(@PathVariable UUID instructorId, @PageableDefault() Pageable pageable) {
         Page<CourseDTO> courses = courseService.getCoursesByInstructorId(instructorId, pageable);
         return ResponseEntity.ok(courses);
     }

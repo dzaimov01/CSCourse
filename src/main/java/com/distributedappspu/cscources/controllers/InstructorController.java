@@ -3,6 +3,9 @@ package com.distributedappspu.cscources.controllers;
 import com.distributedappspu.cscources.models.dto.InstructorDTO;
 import com.distributedappspu.cscources.services.InstructorService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,25 +46,25 @@ public class InstructorController {
     }
 
     @GetMapping("/search/byFirstName")
-    public List<InstructorDTO> findByFirstName(@RequestParam String firstName) {
-        return instructorService.getInstructorsByFirstName(firstName);
+    public Page<InstructorDTO> findByFirstName(@RequestParam String firstName, @PageableDefault() Pageable pageable) {
+        return instructorService.getInstructorsByFirstName(firstName, pageable);
     }
 
     @GetMapping("/search/byLastName")
-    public List<InstructorDTO> findByLastName(@RequestParam String lastName) {
-        return instructorService.getInstructorsByLastName(lastName);
+    public Page<InstructorDTO> findByLastName(@RequestParam String lastName, @PageableDefault() Pageable pageable) {
+        return instructorService.getInstructorsByLastName(lastName, pageable);
     }
 
     @GetMapping("/search/byDateOfBirth")
-    public List<InstructorDTO> findByDateOfBirth(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateOfBirth) {
-        return instructorService.getInstructorsByDateOfBirth(dateOfBirth);
+    public Page<InstructorDTO> findByDateOfBirth(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateOfBirth, @PageableDefault() Pageable pageable) {
+        return instructorService.getInstructorsByDateOfBirth(dateOfBirth, pageable);
     }
 
     @GetMapping("/search/byHireDate")
-    public List<InstructorDTO> findByHireDate(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate) {
-        return instructorService.getInstructorsByHireDate(hireDate);
+    public Page<InstructorDTO> findByHireDate(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date hireDate, @PageableDefault() Pageable pageable) {
+        return instructorService.getInstructorsByHireDate(hireDate, pageable);
     }
 
     @PutMapping("/{id}")

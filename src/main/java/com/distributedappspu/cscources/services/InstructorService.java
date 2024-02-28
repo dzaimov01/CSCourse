@@ -5,6 +5,8 @@ import com.distributedappspu.cscources.models.dto.InstructorDTO;
 import com.distributedappspu.cscources.models.entities.InstructorEntity;
 import com.distributedappspu.cscources.repositories.InstructorRepository;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -31,20 +33,24 @@ public class InstructorService {
         return instructorMapper.mapInstructor(instructorRepository.findById(id).orElseThrow());
     }
 
-    public List<InstructorDTO> getInstructorsByFirstName(String firstName) {
-        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByFirstName(firstName));
+    public Page<InstructorDTO> getInstructorsByFirstName(String firstName, Pageable pageable) {
+        Page<InstructorEntity> instructorEntityPage = instructorRepository.findInstructorEntitiesByFirstName(firstName, pageable);
+        return instructorEntityPage.map(instructorMapper::mapInstructor);
     }
 
-    public List<InstructorDTO> getInstructorsByLastName(String lastName) {
-        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByLastName(lastName));
+    public Page<InstructorDTO> getInstructorsByLastName(String lastName, Pageable pageable) {
+        Page<InstructorEntity> instructorEntityPage = instructorRepository.findInstructorEntitiesByLastName(lastName, pageable);
+        return instructorEntityPage.map(instructorMapper::mapInstructor);
     }
 
-    public List<InstructorDTO> getInstructorsByDateOfBirth(Date dateOfBirth) {
-        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByDateOfBirth(dateOfBirth));
+    public Page<InstructorDTO> getInstructorsByDateOfBirth(Date dateOfBirth, Pageable pageable) {
+        Page<InstructorEntity> instructorEntityPage = instructorRepository.findInstructorEntitiesByDateOfBirth(dateOfBirth, pageable);
+        return instructorEntityPage.map(instructorMapper::mapInstructor);
     }
 
-    public List<InstructorDTO> getInstructorsByHireDate(Date hireDate) {
-        return instructorMapper.mapInstructors(instructorRepository.findInstructorEntitiesByHireDate(hireDate));
+    public Page<InstructorDTO> getInstructorsByHireDate(Date hireDate, Pageable pageable) {
+        Page<InstructorEntity> instructorEntityPage = instructorRepository.findInstructorEntitiesByHireDate(hireDate, pageable);
+        return instructorEntityPage.map(instructorMapper::mapInstructor);
     }
 
     public InstructorDTO createInstructor(@Valid InstructorDTO instructorDTO){

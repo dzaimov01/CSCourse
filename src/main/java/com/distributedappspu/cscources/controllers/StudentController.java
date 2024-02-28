@@ -3,6 +3,9 @@ package com.distributedappspu.cscources.controllers;
 import com.distributedappspu.cscources.models.dto.StudentDTO;
 import com.distributedappspu.cscources.services.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,19 +46,19 @@ public class StudentController {
     }
 
     @GetMapping("/search/byFirstName")
-    public List<StudentDTO> getStudentsByFirstName(@RequestParam String firstName) {
-        return studentService.getStudentsByFirstName(firstName);
+    public Page<StudentDTO> getStudentsByFirstName(@RequestParam String firstName, @PageableDefault() Pageable pageable) {
+        return studentService.getStudentsByFirstName(firstName, pageable);
     }
 
     @GetMapping("/search/byLastName")
-    public List<StudentDTO> getStudentsByLastName(@RequestParam String lastName) {
-        return studentService.getStudentsByLastName(lastName);
+    public Page<StudentDTO> getStudentsByLastName(@RequestParam String lastName, @PageableDefault() Pageable pageable) {
+        return studentService.getStudentsByLastName(lastName, pageable);
     }
 
     @GetMapping("/search/byEnrollmentDate")
-    public List<StudentDTO> getStudentsByEnrollmentDate(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date enrollmentDate) {
-        return studentService.getStudentsByEnrollmentDate(enrollmentDate);
+    public Page<StudentDTO> getStudentsByEnrollmentDate(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date enrollmentDate, @PageableDefault() Pageable pageable) {
+        return studentService.getStudentsByEnrollmentDate(enrollmentDate, pageable);
     }
 
     @PutMapping("/{id}")

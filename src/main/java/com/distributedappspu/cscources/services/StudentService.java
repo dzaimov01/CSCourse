@@ -5,6 +5,8 @@ import com.distributedappspu.cscources.models.dto.StudentDTO;
 import com.distributedappspu.cscources.models.entities.StudentEntity;
 import com.distributedappspu.cscources.repositories.StudentRepository;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -31,16 +33,19 @@ public class StudentService {
         return studentMapper.mapStudent(studentRepository.findById(id).orElseThrow());
     }
 
-    public List<StudentDTO> getStudentsByFirstName(String firstName) {
-        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByFirstName(firstName));
+    public Page<StudentDTO> getStudentsByFirstName(String firstName, Pageable pageable) {
+        Page<StudentEntity> studentEntityPage = studentRepository.findStudentEntitiesByFirstName(firstName, pageable);
+        return studentEntityPage.map(studentMapper::mapStudent);
     }
 
-    public List<StudentDTO> getStudentsByLastName(String lastName) {
-        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByLastName(lastName));
+    public Page<StudentDTO> getStudentsByLastName(String lastName, Pageable pageable) {
+        Page<StudentEntity> studentEntityPage = studentRepository.findStudentEntitiesByLastName(lastName, pageable);
+        return studentEntityPage.map(studentMapper::mapStudent);
     }
 
-    public List<StudentDTO> getStudentsByEnrollmentDate(Date enrollmentDate) {
-        return studentMapper.mapStudents(studentRepository.findStudentEntitiesByEnrollmentDate(enrollmentDate));
+    public Page<StudentDTO> getStudentsByEnrollmentDate(Date enrollmentDate, Pageable pageable) {
+        Page<StudentEntity> studentEntityPage = studentRepository.findStudentEntitiesByEnrollmentDate(enrollmentDate, pageable);
+        return studentEntityPage.map(studentMapper::mapStudent);
     }
 
     public StudentDTO createStudent(@Valid StudentDTO studentDTO) {

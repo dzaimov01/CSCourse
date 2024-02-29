@@ -1,8 +1,10 @@
 package com.distributedappspu.cscources.services;
 
 import com.distributedappspu.cscources.mapper.InstructorMapper;
+import com.distributedappspu.cscources.models.dto.AuthRequestDTO;
 import com.distributedappspu.cscources.models.dto.InstructorDTO;
 import com.distributedappspu.cscources.models.entities.InstructorEntity;
+import com.distributedappspu.cscources.models.entities.UserInfo;
 import com.distributedappspu.cscources.repositories.InstructorRepository;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -20,9 +22,12 @@ public class InstructorService {
 
     private final InstructorMapper instructorMapper;
 
-    public InstructorService(InstructorRepository instructorRepository, InstructorMapper instructorMapper) {
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public InstructorService(InstructorRepository instructorRepository, InstructorMapper instructorMapper, UserDetailsServiceImpl userDetailsService) {
         this.instructorRepository = instructorRepository;
         this.instructorMapper = instructorMapper;
+        this.userDetailsService = userDetailsService;
     }
 
     public List<InstructorDTO> getAllInstructors() {
@@ -54,8 +59,7 @@ public class InstructorService {
     }
 
     public InstructorDTO createInstructor(@Valid InstructorDTO instructorDTO){
-        InstructorEntity instructorEntity = instructorMapper.mapInstructor(instructorDTO);
-        return instructorMapper.mapInstructor(instructorRepository.save(instructorEntity));
+        return addInstructor(instructorDTO);
     }
 
     public InstructorDTO updateInstructor(UUID id, @Valid InstructorDTO instructorDTO){
@@ -63,8 +67,19 @@ public class InstructorService {
         if (existingInstructor == null) {
             throw new IllegalArgumentException("Instructor does not exist!");
         }
-        InstructorEntity updatedInstructorEntity = instructorMapper.mapInstructor(instructorDTO);
-        return instructorMapper.mapInstructor(instructorRepository.save(updatedInstructorEntity));
+        return addInstructor(instructorDTO);
+    }
+
+    private InstructorDTO addInstructor(@Valid InstructorDTO instructorDTO) {
+        InstructorEntity instructorEntity = instructorMapper.mapInstructor(instructorDTO);
+        UserInfo newUser = userDetailsService.addNewUser(
+                new AuthRequestDTO(instructorDTO.getUsername(), instructorDTO.getPassword()), "instructor");
+        instructorEntity.setUserInfo(newUser);
+        InstructorEntity newInstructorEntity = instructorRepository.save(instructorEntity);
+        InstructorDTO newInstructorDTO = instructorMapper.mapInstructor(newInstructorEntity);
+        newInstructorDTO.setUsername(newInstructorEntity.getUserInfo().getUsername());
+        newInstructorDTO.setPassword(newInstructorEntity.getUserInfo().getPassword());
+        return newInstructorDTO;
     }
 
     public void deleteInstructor(UUID id){

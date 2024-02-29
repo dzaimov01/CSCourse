@@ -3,6 +3,8 @@ package com.distributedappspu.cscources.services;
 import com.distributedappspu.cscources.models.CustomUserDetails;
 import com.distributedappspu.cscources.models.dto.AuthRequestDTO;
 import com.distributedappspu.cscources.models.entities.UserInfo;
+import com.distributedappspu.cscources.models.entities.UserRole;
+import com.distributedappspu.cscources.repositories.RoleRepository;
 import com.distributedappspu.cscources.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -22,6 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Lazy
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    RoleRepository roleRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -32,16 +37,28 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
-    public AuthRequestDTO registerNewUser(AuthRequestDTO userDTO) {
+    public AuthRequestDTO registerNewUser(AuthRequestDTO userDTO, String typeOfUser) {
+        UserInfo newUser = addNewUser(userDTO, typeOfUser);
+        return new AuthRequestDTO(newUser.getUsername(), newUser.getPassword());
+    }
+
+    public UserInfo addNewUser(AuthRequestDTO userDTO, String typeOfUser) {
         if (userRepository.findByUsername(userDTO.getUsername()) != null) {
             throw new IllegalArgumentException("User already exists");
         }
-
         UserInfo newUser = new UserInfo();
         newUser.setUsername(userDTO.getUsername());
         newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        UserRole userRole = new UserRole();
+        if(typeOfUser.equalsIgnoreCase("student")) {
+            userRole.setName("ROLE_STUDENT");
+        } else if (typeOfUser.equalsIgnoreCase("instructor")) {
+            userRole.setName("ROLE_INSTRUCTOR");
+        }
+        roleRepository.save(userRole);
+        newUser.getRoles().add(userRole);
         UserInfo savedUser = userRepository.save(newUser);
 
-        return new AuthRequestDTO(savedUser.getUsername(), savedUser.getPassword());
+        return savedUser;
     }
 }

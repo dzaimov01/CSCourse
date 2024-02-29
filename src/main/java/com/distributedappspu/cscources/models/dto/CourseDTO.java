@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -28,17 +29,16 @@ public class CourseDTO {
     private String description;
 
     @NotNull(message = "Start date for course cannot be empty!")
-    @NotBlank(message = "Start date for course cannot be empty!")
     @FutureOrPresent(message = "Date cannot be in the past!")
     private Date startDate;
 
     @NotNull(message = "End date for course cannot be empty!")
-    @NotBlank(message = "End date for course cannot be empty!")
     @FutureOrPresent(message = "Date cannot be in the past!")
     private Date endDate;
 
     @NotNull(message = "Instructor cannot be empty!")
-    @NotBlank(message = "Instructor cannot be empty!")
     private UUID instructorId;
+
+    private List<StudentDTO> students;
 }
 

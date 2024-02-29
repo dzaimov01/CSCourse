@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-28T21:22:27+0200",
+    date = "2024-02-29T20:27:19+0200",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +23,12 @@ public class CourseMapperImpl implements CourseMapper {
 
         CourseDTO courseDTO = new CourseDTO();
 
+        courseDTO.setId( course.getId() );
+        courseDTO.setName( course.getName() );
+        courseDTO.setDescription( course.getDescription() );
+        courseDTO.setStartDate( course.getStartDate() );
+        courseDTO.setEndDate( course.getEndDate() );
+
         return courseDTO;
     }
 
@@ -33,6 +39,12 @@ public class CourseMapperImpl implements CourseMapper {
         }
 
         CourseEntity courseEntity = new CourseEntity();
+
+        courseEntity.setId( courseDTO.getId() );
+        courseEntity.setName( courseDTO.getName() );
+        courseEntity.setDescription( courseDTO.getDescription() );
+        courseEntity.setStartDate( courseDTO.getStartDate() );
+        courseEntity.setEndDate( courseDTO.getEndDate() );
 
         return courseEntity;
     }

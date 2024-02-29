@@ -1,8 +1,10 @@
 package com.distributedappspu.cscources.services;
 
 import com.distributedappspu.cscources.mapper.StudentMapper;
+import com.distributedappspu.cscources.models.dto.AuthRequestDTO;
 import com.distributedappspu.cscources.models.dto.StudentDTO;
 import com.distributedappspu.cscources.models.entities.StudentEntity;
+import com.distributedappspu.cscources.models.entities.UserInfo;
 import com.distributedappspu.cscources.repositories.StudentRepository;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -20,9 +22,12 @@ public class StudentService {
 
     private final StudentMapper studentMapper;
 
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper){
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, UserDetailsServiceImpl userDetailsService){
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
+        this.userDetailsService = userDetailsService;
     }
 
     public List<StudentDTO> getAllStudents() {
@@ -49,8 +54,7 @@ public class StudentService {
     }
 
     public StudentDTO createStudent(@Valid StudentDTO studentDTO) {
-        StudentEntity instructorEntity = studentMapper.mapStudent(studentDTO);
-        return studentMapper.mapStudent(studentRepository.save(instructorEntity));
+        return addStudent(studentDTO);
     }
 
     public StudentDTO updateStudent(UUID id, @Valid StudentDTO studentDTO){
@@ -58,8 +62,19 @@ public class StudentService {
         if (existingStudent == null) {
             throw new IllegalArgumentException("Student does not exist!");
         }
-        StudentEntity updatedStudentEntity = studentMapper.mapStudent(studentDTO);
-        return studentMapper.mapStudent(studentRepository.save(updatedStudentEntity));
+        return addStudent(studentDTO);
+    }
+
+    private StudentDTO addStudent(@Valid StudentDTO studentDTO) {
+        StudentEntity studentEntity = studentMapper.mapStudent(studentDTO);
+        UserInfo authRequestDTO = userDetailsService.addNewUser(
+                new AuthRequestDTO(studentDTO.getUsername(), studentDTO.getPassword()), "student");
+        studentEntity.setUserInfo(authRequestDTO);
+        StudentEntity savedStudentEntity = studentRepository.save(studentEntity);
+        StudentDTO savedStudentDTO = studentMapper.mapStudent(savedStudentEntity);
+        savedStudentDTO.setUsername(savedStudentEntity.getUserInfo().getUsername());
+        savedStudentDTO.setPassword(savedStudentEntity.getUserInfo().getPassword());
+        return savedStudentDTO;
     }
 
     public void deleteStudent(UUID id){

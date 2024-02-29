@@ -64,8 +64,7 @@ public class CourseService {
     }
 
     public CourseDTO createCourse(@Valid CourseDTO courseDTO){
-        CourseEntity studentEntity = courseMapper.mapCourse(courseDTO);
-        return courseMapper.mapCourse(courseRepository.save(studentEntity));
+        return addCourse(courseDTO);
     }
 
     public CourseDTO updateCourse(UUID id, @Valid CourseDTO courseDTO) {
@@ -74,8 +73,17 @@ public class CourseService {
         if (existingCourse == null) {
             throw new IllegalArgumentException("Course does not exist!");
         }
-        CourseEntity updatedCourseEntity = courseMapper.mapCourse(courseDTO);
-        return courseMapper.mapCourse(courseRepository.save(updatedCourseEntity));
+        return addCourse(courseDTO);
+    }
+
+    private CourseDTO addCourse(@Valid CourseDTO courseDTO) {
+        CourseEntity courseEntity = courseMapper.mapCourse(courseDTO);
+        InstructorEntity instructor = instructorRepository.findById(courseDTO.getInstructorId()).orElse(null);
+        courseEntity.setInstructor(instructor);
+        CourseEntity newCourse = courseRepository.save(courseEntity);
+        CourseDTO newCourseDTO = courseMapper.mapCourse(newCourse);
+        newCourseDTO.setInstructorId(courseEntity.getInstructor().getId());
+        return newCourseDTO;
     }
 
     public void deleteCourse(UUID id) {

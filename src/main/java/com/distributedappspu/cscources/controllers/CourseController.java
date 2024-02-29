@@ -27,7 +27,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @PostMapping
+    @PostMapping("/createCourse")
     public ResponseEntity<CourseDTO> createCourse(@Valid @RequestBody CourseDTO courseDTO) {
         CourseDTO createdCourse = courseService.createCourse(courseDTO);
         return new ResponseEntity<>(createdCourse, HttpStatus.CREATED);
@@ -63,7 +63,7 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
 
-    @GetMapping
+    @GetMapping("/getAllCourses")
     public ResponseEntity<List<CourseDTO>> getAllCourses() {
         List<CourseDTO> courseDTOs = courseService.getAllCourses();
         return new ResponseEntity<>(courseDTOs, HttpStatus.OK);

@@ -1,10 +1,13 @@
 
+q
+java:S1192("ODefine a constant instead of duplicating this literal "/swagger-ui/**" 3 times.(ô¦«şÿÿÿÿ8Ôåú¯ß1
 _
-java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄŞ8ò¡Ô‹ß1
+java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ûåú¯ß1
 w
-java:S3305+"ZInject this field value directly into "securityFilterChain", the only method that uses it.(¥œÏâ8ó¡Ô‹ß1
-m
-java:S1128
-"KRemove this unused import 'org.springframework.security.config.Customizer'.(Ïóœ¬ùÿÿÿÿ8úÌÔ‹ß1
+java:S3305-"ZInject this field value directly into "securityFilterChain", the only method that uses it.(¥œÏâ8Üåú¯ß1
+g
+java:S1128"KRemove this unused import 'org.springframework.web.cors.CorsConfiguration'.(î¤·`8ååú¯ß1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ååú¯ß1
 T
-java:S1068"2Remove this unused "WHITE_LIST_URL" private field.(×÷„ùÿÿÿÿ8ø¡Ô‹ß1
+java:S1068"2Remove this unused "WHITE_LIST_URL" private field.(×÷„ùÿÿÿÿ8ååú¯ß1

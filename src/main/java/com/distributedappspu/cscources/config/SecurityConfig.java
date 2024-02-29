@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -50,8 +52,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/v1/login",
+        http.csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable).authorizeHttpRequests(req ->
+                        req.requestMatchers(
+                                        "/v1/students/createUser",
+                                        "/v1/instructors/createUser",
+                                        "/api/v1/login",
                                         "/api/v1/register",
                                         "/v2/api-docs",
                                         "/v3/api-docs",
@@ -62,8 +68,18 @@ public class SecurityConfig {
                                         "/configuration/security",
                                         "/swagger-ui/**",
                                         "/webjars/**",
-                                        "/swagger-ui.html")
+                                        "/swagger-ui.html",
+                                        "/swagger-ui/",
+                                        "/swagger-ui/**",
+                                        "/api-docs/**",
+                                        "/v1/courses/getAllCourses")
                                 .permitAll()
+                                .requestMatchers(
+                                        "/v1/instructors/**",
+                                        "/v1/courses/createCourse",
+                                        "/v1/courses"
+                                ).hasRole("INSTRUCTOR")
+                                .requestMatchers("/v1/courses").hasRole("STUDENT")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

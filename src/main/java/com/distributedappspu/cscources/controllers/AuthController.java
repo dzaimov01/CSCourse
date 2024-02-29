@@ -49,9 +49,9 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/api/v1/register")
+    @PostMapping("/api/v1//student/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody AuthRequestDTO userDTO) {
-        AuthRequestDTO registeredUser = userDetailsService.registerNewUser(userDTO);
+        AuthRequestDTO registeredUser = userDetailsService.registerNewUser(userDTO, "Student");
         if(registeredUser != null) {
             return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
         } else {

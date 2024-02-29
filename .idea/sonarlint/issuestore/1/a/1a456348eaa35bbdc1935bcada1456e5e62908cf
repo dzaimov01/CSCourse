@@ -8,4 +8,4 @@ java:S6813"BRemove this field injection and use constructor injection instead.
 C
 java:S14525"&Remove usage of generic wildcard type.(©×¦8¥Óµ‹ß1
 †
-java:S1128"dRemove this unused import 'org.springframework.security.core.userdetails.UsernameNotFoundException'.(Í£Ö¶ùÿÿÿÿ8ù¢½‹ß1
+java:S1128"dRemove this unused import 'org.springframework.security.core.userdetails.UsernameNotFoundException'.(Í£Ö¶ùÿÿÿÿ8‡÷³¬ß1

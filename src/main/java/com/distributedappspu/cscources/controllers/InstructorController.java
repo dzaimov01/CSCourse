@@ -27,7 +27,7 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public ResponseEntity<InstructorDTO> createInstructor(@Valid @RequestBody InstructorDTO instructorDTO) {
         InstructorDTO createdInstructor = instructorService.createInstructor(instructorDTO);
         return new ResponseEntity<>(createdInstructor, HttpStatus.CREATED);

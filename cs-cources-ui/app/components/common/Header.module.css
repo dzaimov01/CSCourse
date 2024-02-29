@@ -1,0 +1,41 @@
+/* src/components/common/Header.module.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5rem;
+    background-color: #000000; /* Fallback color */
+    background-image: linear-gradient(to bottom, #004d7a 0%, #007bff 100%);
+    background-size: 100% 0; /* Start with no gradient visible */
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease-in;
+    color: #ffffff;
+}
+
+.header:hover {
+    background-size: 100% 100%; /* On hover, reveal the gradient */
+}
+
+.logo p {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+.navigation p {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navigation p:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly lighter background on link hover */
+}

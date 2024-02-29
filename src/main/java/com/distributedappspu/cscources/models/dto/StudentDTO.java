@@ -1,5 +1,6 @@
 package com.distributedappspu.cscources.models.dto;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,13 +35,21 @@ public class StudentDTO {
     @Size(max = 30, message = "Student's email cannot be longer than 20 characters!")
     private String email;
 
+    @NotNull(message = "Student's username cannot be empty!")
+    @NotBlank(message = "Student's username cannot be empty!")
+    @Size(max = 20, message = "Student's username cannot be longer than 20 characters!")
+    private String username;
+
+    @NotNull(message = "Student's password cannot be empty!")
+    @NotBlank(message = "Student's password cannot be empty!")
+    @Size(max = 20, message = "Student's password cannot be longer than 20 characters!")
+    private String password;
+
     @NotNull(message = "Student's date of birth cannot be empty!")
-    @NotBlank(message = "Student's date of birth cannot be empty!")
     @Past(message = "Student's date of birth cannot be in the present or future!")
     private Date dateOfBirth;
 
     @NotNull(message = "Student's enrollment date cannot be empty!")
-    @NotBlank(message = "Student's enrollment date cannot be empty!")
     @FutureOrPresent(message = "Student's enrollment date cannot be in the past!")
     private Date enrollmentDate;
 

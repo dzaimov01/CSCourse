@@ -34,13 +34,21 @@ public class InstructorDTO {
     @Size(max = 30, message = "Instructor's email cannot be longer than 30 characters!")
     private String email;
 
+    @NotNull(message = "Instructor's username cannot be empty!")
+    @NotBlank(message = "Instructor's username cannot be empty!")
+    @Size(max = 20, message = "Instructor's username cannot be longer than 20 characters!")
+    private String username;
+
+    @NotNull(message = "Instructor's password cannot be empty!")
+    @NotBlank(message = "Instructor's password cannot be empty!")
+    @Size(max = 20, message = "Instructor's password cannot be longer than 20 characters!")
+    private String password;
+
     @NotNull(message = "Instructor's date of birth cannot be empty!")
-    @NotBlank(message = "Instructor's date of birth cannot be empty!")
     @Past(message = "Instructor's date of birth cannot be in the present or future!")
     private Date dateOfBirth;
 
     @NotNull(message = "Instructor's hire date cannot be empty!")
-    @NotBlank(message = "Instructor's hire date cannot be empty!")
     @PastOrPresent(message = "Instructor's hire date cannot be in the future!")
     private Date hireDate;
 

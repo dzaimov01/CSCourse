@@ -16,7 +16,7 @@ export const getInstructorById = async (id: string) => {
 };
 
 export const getAllInstructors = async () => {
-    return apiClient.get<InstructorDTO[]>(``);
+    return apiClient.get<InstructorDTO[]>(`/getAllInstructors`);
 };
 
 export const findByFirstName = async (firstName: string, pageable: any) => {

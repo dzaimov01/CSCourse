@@ -49,7 +49,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/api/v1//student/register")
+    @PostMapping("/api/v1/student/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody AuthRequestDTO userDTO) {
         AuthRequestDTO registeredUser = userDetailsService.registerNewUser(userDTO, "Student");
         if(registeredUser != null) {

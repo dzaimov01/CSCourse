@@ -31,3 +31,13 @@ body {
     text-wrap: balance;
   }
 }
+
+/* HomePage.module.css */
+.instructorsSection {
+  background-color: #ffffff; /* White background or any color that fits your design */
+  padding: 20px; /* Adjust padding as needed */
+  margin-top: 20px; /* Ensures there's some space between the courses and instructors section */
+  border-radius: 8px; /* Optional: adds rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for depth */
+}
+

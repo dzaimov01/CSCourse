@@ -39,7 +39,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructorDTO, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/getAllInstructors")
     public ResponseEntity<List<InstructorDTO>> getAllInstructors() {
         List<InstructorDTO> instructorDTOs = instructorService.getAllInstructors();
         return new ResponseEntity<>(instructorDTOs, HttpStatus.OK);

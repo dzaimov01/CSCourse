@@ -17,9 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-
-import java.util.List;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -27,19 +24,6 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
-    private static final String[] WHITE_LIST_URL = {"/api/v1/login",
-            "/api/v1/register",
-            "/v2/api-docs",
-            "/v3/api-docs",
-            "/v3/api-docs/**",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui/**",
-            "/webjars/**",
-            "/swagger-ui.html"};
 
     @Autowired
     JwtAuthFilter jwtAuthFilter;
@@ -56,7 +40,6 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable).authorizeHttpRequests(req ->
                         req.requestMatchers(
                                         "/v1/students/createUser",
-                                        "/v1/instructors/createUser",
                                         "/api/v1/login",
                                         "/api/v1/register",
                                         "/v2/api-docs",
@@ -72,7 +55,8 @@ public class SecurityConfig {
                                         "/swagger-ui/",
                                         "/swagger-ui/**",
                                         "/api-docs/**",
-                                        "/v1/courses/getAllCourses")
+                                        "/v1/courses/getAllCourses",
+                                        "/v1/instructors/getAllInstructors")
                                 .permitAll()
                                 .requestMatchers(
                                         "/v1/instructors/**",
@@ -88,13 +72,6 @@ public class SecurityConfig {
         ;
 
         return http.build();
-
-        //.logout(logout ->
-        //                        logout.logoutUrl("/api/v1/auth/logout")
-        //                                .addLogoutHandler(logoutHandler)
-        //                                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-        //                )
-
     }
 
     @Bean

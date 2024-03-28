@@ -72,3 +72,9 @@ v
 Fsrc/main/java/com/distributedappspu/cscources/mapper/CourseMapper.java,1/1/118fe3802d6431eb190c5e03598b5958b7fdff02
 s
 Csrc/main/java/com/distributedappspu/cscources/config/WebConfig.java,8/8/880d4b2108c32671decc61575f354558db863ad8
+~
+Nsrc/test/java/com/distributedappspu/cscources/services/StudentServiceTest.java,a/d/adc225db7b1565b4856e4994e28aae67bed9c331
+Å
+Qsrc/test/java/com/distributedappspu/cscources/services/InstructorServiceTest.java,6/9/69518c3718c7e4e250293214985a3d8e3d251508
+}
+Msrc/test/java/com/distributedappspu/cscources/services/CourseServiceTest.java,3/6/3661c0df71bb403d110f03d487bc68db7ee3ef3f

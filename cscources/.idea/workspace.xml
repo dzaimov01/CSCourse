@@ -5,36 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="585f1e81-6912-445c-9805-5b83de1d0aaf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/CscourcesApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/controllers/CourseController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/controllers/InstructorController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/controllers/StudentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/mapper/CourseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/mapper/InstructorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/mapper/StudentMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/dto/CourseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/dto/InstructorDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/dto/StudentDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/entities/CourseEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/entities/InstructorEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/models/entities/StudentEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/repositories/CourseRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/repositories/InstructorRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/repositories/StudentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/services/CourseService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/services/InstructorService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/distributedappspu/cscources/services/StudentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/distributedappspu/cscources/CscourcesApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/a/1a456348eaa35bbdc1935bcada1456e5e62908cf" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/a/1a456348eaa35bbdc1935bcada1456e5e62908cf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/e/1e5d51b233bea4aaafcebffda006a73266808d24" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/1/e/1e5d51b233bea4aaafcebffda006a73266808d24" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/5/1/511e40a584c9e6ff53778f28375a27bd5ce6cc06" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/5/1/511e40a584c9e6ff53778f28375a27bd5ce6cc06" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/7/1/714ad466bd49d9190b03d60aedce60d4228f8050" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/7/1/714ad466bd49d9190b03d60aedce60d4228f8050" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/components/courses/CourseList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/components/courses/CourseList.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/components/instructors/InstructorCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/components/instructors/InstructorCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/components/instructors/InstructorList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/components/instructors/InstructorList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cs-cources-ui/app/services/instructorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../cs-cources-ui/app/services/instructorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/controllers/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/com/distributedappspu/cscources/controllers/InstructorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/CourseMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/CourseMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/InstructorMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/InstructorMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/StudentMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../target/generated-sources/annotations/com/distributedappspu/cscources/mapper/StudentMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,6 +198,7 @@
       <workItem from="1708550944251" duration="101000" />
       <workItem from="1708595270708" duration="1196000" />
       <workItem from="1709127654732" duration="1615000" />
+      <workItem from="1711657427874" duration="14000" />
     </task>
     <servers />
   </component>

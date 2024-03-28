@@ -1,0 +1,38 @@
+/* InstructorCard.module.css */
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    background-color: #fff;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.content {
+    text-align: center;
+}
+
+.name {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.email {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.dates p {
+    font-size: 14px;
+    color: #999;
+    margin: 5px 0;
+}
